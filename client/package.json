@@ -26,7 +26,7 @@
     "eslint": "^5.16.0",
     "flag-icon-css": "^3.4.5",
     "font-awesome": "^4.7.0",
-    "jquery": "^1.9.1",
+    "jquery": "^3.4.0",
     "ngx-bootstrap": "^5.2.0",
     "ngx-loading": "^8.0.0",
     "ngx-perfect-scrollbar": "^8.0.0",
