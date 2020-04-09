@@ -1,0 +1,15 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<div class="wrap-input100 validate-input" data-validate="Enter password">
+                <div> OTP</div>
+    <input [(ngModel)]="otp" class="input100" name="otp" type="text">
+     
+</div>
+
+<div class="container-login100-form-btn">
+    <div class="wrap-login100-form-btn">
+        <div class="login100-form-bgbtn"></div>
+        <button (click)="verifyOtp()" class="login100-form-btn">
+            Login
+        </button>
+    </div>
+</div>

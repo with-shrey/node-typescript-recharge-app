@@ -1,0 +1,27 @@
+<div class="animated fadeIn container">
+    <div class="card">
+        <div class="card-header">
+            Organisations List
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Organisation Name</th>
+                    <th scope="col">Organisation Url</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let organisation of list;let i = index">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{organisation.orgName}}</td>
+                    <td>{{organisation.host}}</td>
+                    <td><a [routerLink]="'/portal/org/'+organisation.orgId">EDIT</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

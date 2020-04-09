@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@import "~@coreui/coreui/dist/css/coreui";
+
+:host {
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+
+  main {
+    position: relative;
+  }
+
+  ::ng-deep router-outlet ~ * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+

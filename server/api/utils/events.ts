@@ -1,0 +1,1 @@
+export const ORGANISATION_ALL = 'Organisation:*';

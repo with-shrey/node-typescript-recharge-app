@@ -1,0 +1,63 @@
+version: "3.2"
+services:
+  client:
+    image: connectwithshrey/node-axom:12.13.1-alpine
+    working_dir: /apps/axom/client
+    restart: on-failure
+    command: npm start -- --host 0.0.0.0 --disable-host-check
+    ports:
+      - "4200:4200"
+    volumes:
+      - type: bind
+        source: ./
+        target: /apps/axom
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  web:
+    image: connectwithshrey/node-axom:12.13.1-alpine
+    working_dir: /apps/axom/server
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    env_file: server/.env
+    command: npm run dev
+    volumes:
+      - type: bind
+        source: .
+        target: /apps/axom
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    depends_on:
+      - db
+
+    db:
+      image: mysql:8.0
+      command: --default-authentication-plugin=mysql_native_password
+      restart: on-failure
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: axom
+      volumes:
+        - ./docker/mysql:/var/lib/mysql
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "200k"
+          max-file: "10"
+      ports:
+        - "3306:3306"
+
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
+      logging:
+        driver: "none"

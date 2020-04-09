@@ -1,0 +1,37 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<div class="animated fadeIn container">
+    <div class="card">
+        <div class="card-header">
+            <strong *ngIf="orgId">Edit</strong><strong *ngIf="!orgId">Create</strong> Organisation
+        </div>
+        <div class="card-body">
+            <alert *ngIf="error" type="danger">
+                Duplicate Name or Host Name
+            </alert>
+            <form (ngSubmit)="onSubmitForm()" [formGroup]="organisationForm">
+                <div class="form-group">
+                    <label>Organisation Name</label>
+                    <input class="form-control"
+                           [ngClass]="{'is-invalid': (organisationName.dirty || organisationName.touched) && organisationName.invalid}"
+                           type="text" formControlName="organisationName" name="organisationName"
+                           placeholder="Organisation Name">
+                    <span *ngIf="(organisationName.dirty || organisationName.touched) && organisationName.invalid && organisationName.errors.required"
+                          class="invalid-feedback">Enter Organisation Name </span>
+                </div>
+                <div class="form-group">
+                    <label>Organisation URL</label>
+                    <input [ngClass]="{'is-invalid': (organisationUrl.dirty || organisationUrl.touched) && organisationUrl.invalid}"
+                           class="form-control" formControlName="organisationUrl" name="nf-password"
+                           placeholder="OrganisationUrl" type="text">
+                    <span *ngIf="(organisationUrl.dirty || organisationUrl.touched) && organisationUrl.invalid && organisationUrl.errors.required"
+                          class="invalid-feedback">Enter Organisation Url </span>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-sm btn-primary" (click)="onSubmitForm()" type="submit">
+                <i class="fa fa-dot-circle-o"></i> Submit
+            </button>
+        </div>
+    </div>
+</div>
